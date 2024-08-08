@@ -1,24 +1,32 @@
 package com.plasmavan.gemey
 
 import android.content.Intent
+import android.graphics.fonts.FontStyle
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.focusable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowForward
 import androidx.compose.material.icons.filled.Done
+import androidx.compose.material.icons.filled.Settings
+import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.ExposedDropdownMenuBox
@@ -27,9 +35,12 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.IconButtonColors
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.RadioButton
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
+import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
@@ -41,6 +52,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.input.ImeAction
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.google.ai.client.generativeai.GenerativeModel
@@ -121,24 +133,27 @@ class MainActivity : ComponentActivity() {
         var expandedDifficulty by remember { mutableStateOf(false) }
         var expandedCertifications by remember { mutableStateOf(false) }
         var response by remember { mutableStateOf("") }
-
-        val filteredField by remember { derivedStateOf { levelOptions.filter { it.contains(fieldText, ignoreCase = true) } } }
+        var isLoading by remember { mutableStateOf(false) }
 
         Column {
             Box(
                 modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(16.dp),
+                    .fillMaxWidth(),
                 contentAlignment = Alignment.TopCenter
             ) {
-                Text(
-                    text = "Googleのエンタープライズ機能、プロダクト、サービスを含む、Googleのプロダクト、サービス、機械学習技術の提供、向上、および開発のためにこのデータを使用します",
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(16.dp),
-                    textAlign = TextAlign.Start
+                TopAppBar(
+                    colors = TopAppBarDefaults.topAppBarColors(
+                        containerColor = MaterialTheme.colorScheme.primaryContainer,
+                        titleContentColor = MaterialTheme.colorScheme.primary,
+                    ),
+                    title = {
+                        Text(
+                            text = getString(R.string.app_name)
+                        )
+                    }
                 )
             }
+
             Box(
                 modifier = Modifier
                     .fillMaxSize()
@@ -340,10 +355,10 @@ class MainActivity : ComponentActivity() {
                             .padding(32.dp),
                         contentAlignment = Alignment.BottomCenter
                     ) {
-                        IconButton(
+                        Button(
                             onClick = {
                                 if(fieldText == "なし" && levelText == "なし" && difficultyText == "なし" && certificationsText == "なし") {
-                                    return@IconButton
+                                    return@Button
                                 } else if(fieldText == "なし") {
                                     fieldText = ""
                                 } else if(levelText == "なし") {
@@ -359,13 +374,26 @@ class MainActivity : ComponentActivity() {
                                 generateResponse(prompt) {
                                     response = it
                                 }
+                            },
+                            content = {
+                                Row(
+                                    Modifier
+                                        .fillMaxWidth(),
+                                    verticalAlignment = Alignment.CenterVertically
+                                ) {
+                                    Text(
+                                        text = "この内容で問題を作成する！",
+                                        style = MaterialTheme.typography.bodyLarge,
+                                        modifier = Modifier
+                                            .padding(16.dp)
+                                    )
+                                    Icon(
+                                        imageVector = Icons.Filled.Done,
+                                        contentDescription = null
+                                    )
+                                }
                             }
-                        ) {
-                            Icon(
-                                imageVector = Icons.Filled.Done,
-                                contentDescription = null
-                            )
-                        }
+                        )
                     }
                 }
             }
