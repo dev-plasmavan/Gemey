@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Gemey</string>
+    <string name="field">Field</string>
+    <string name="level">Level</string>
+    <string name="difficulty">Degree of difficulty</string>
+    <string name="certifications">Certifications</string>
+    <string name="make_with_contents">Make questions with this content!</string>
+    <string name="google_data_collect">The data submitted will be used by Google to provide, improve, and develop Google\'s products, services, and machine learning technology, including Google\'s enterprise features, products, and services.</string>
+    <string name="output_result">Output content ：</string>
+    <string name="cant_push_now">You can\'t push it now.</string>
+    <string name="making_questions">I\'m making questions for you!</string>
+    <string name="prompt">Please create questions in the format of four choices with the following content. Also, please create at least 10 questions, ignoring those with blank content. If a question cannot be created with this content, please suggest a recommended question.\n# Contents\n- Field: ${fieldText}\n- Level: ${levelText}\n- Difficulty: ${difficultyText}\n- Related Certifications/Certifications: ${certificationsText}</string>
+    <string name="need_to_input">You have to pick at least one item.</string>
+</resources>

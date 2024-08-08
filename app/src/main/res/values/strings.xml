@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">Gemey</string>
+    <string name="field">分野</string>
+    <string name="level">レベル</string>
+    <string name="difficulty">難易度</string>
+    <string name="certifications">検定・資格</string>
+    <string name="make_with_contents">この内容で問題を作成する！</string>
+    <string name="google_data_collect">送信されたデータはGoogleによって、Googleのエンタープライズ機能、プロダクト、サービスを含む、Googleのプロダクト、サービス、機械学習技術の提供、向上、および開発のためにを使用されます。</string>
+    <string name="output_result">出力された内容 ：</string>
+    <string name="cant_push_now">今は押せないよ～</string>
+    <string name="making_questions">問題を作っているよ～</string>
+    <string name="prompt">四択を選択する形式の問題を以下の内容で作成してください。また、内容が空欄のものについては無視し、最低でも１０問は作成してください。もし、問題がこの内容で問題が作成できない場合には、おすすめの問題を提案してください。\n# 内容\n- 分野：${fieldText}\n- レベル：${levelText}\n- 難易度：${difficultyText}\n- 関連する検定・資格：${certificationsText}</string>
+    <string name="need_to_input">１つ以上は項目を選んでね</string>
 </resources>

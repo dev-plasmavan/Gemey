@@ -102,7 +102,7 @@ class ResultActivity : ComponentActivity() {
                 contentAlignment = Alignment.TopCenter
             ) {
                 Text(
-                    text = "送信されたデータはGoogleによって、Googleのエンタープライズ機能、プロダクト、サービスを含む、Googleのプロダクト、サービス、機械学習技術の提供、向上、および開発のためにを使用されます。",
+                    text = getString(R.string.google_data_collect),
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(16.dp),
@@ -111,8 +111,7 @@ class ResultActivity : ComponentActivity() {
             }
             Box(
                 modifier = Modifier
-                    .fillMaxSize()
-                    .padding(8.dp),
+                    .fillMaxSize(),
                 contentAlignment = Alignment.TopCenter
             ) {
                 Column {
@@ -129,7 +128,7 @@ class ResultActivity : ComponentActivity() {
                                 .verticalScroll(rememberScrollState())
                         ) {
                             Text(
-                                text = "出力された内容 ：",
+                                text = getString(R.string.output_result),
                                 modifier = Modifier
                                     .padding(16.dp),
                                 textAlign = TextAlign.Start
